@@ -20,5 +20,5 @@ module.exports = {
       chainId: 31337,
     }
   },
-  solidity: "0.8.4",
+  solidity: "0.8.20",
 };

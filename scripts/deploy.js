@@ -1,9 +1,18 @@
 const colors = require('colors');
 const hre = require('hardhat');
+const prompts = require('prompts');
 require('dotenv').config();
 
 async function main() {
-  console.log('deploying...'.yellow);
+  const response = await prompts(
+    {
+      type: 'text',
+      name: 'contractName',
+      message: 'Enter the contract name you want to deploy',
+    }
+  )
+
+  console.log(`Deploying ${response.contractName}`.cyan);
   const signers = await hre.ethers.getSigners();
   const deployer = signers[0];
   
@@ -12,10 +21,12 @@ async function main() {
   } else {
     console.log(`Deploying to ${hre.network.name}`.cyan);
   }
-  const Token = await hre.ethers.getContractFactory("SquidwardTentaclesToken", deployer);
-  const token = await Token.deploy();
-  await token.waitForDeployment();
-  console.log(`Token deployed to: ${await token.getAddress()}`.green);
+  
+  const contractFactory = await hre.ethers.getContractFactory(response.contractName, deployer);
+  const contract = await contractFactory.deploy();
+  await contract.waitForDeployment();
+  const contractAddress = await contract.getAddress();
+  console.log(`Deployed ${response.contractName} to ${contractAddress}`.green);
 }
 
 main()
