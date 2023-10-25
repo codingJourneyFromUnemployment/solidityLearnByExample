@@ -26,7 +26,7 @@ contract MerkleProof {
   }
 }
 
-contract TestMerkleProof is Merkleproof {
+contract TestMerkleProof is MerkleProof {
   bytes32[] public hashes;
 
   constructor() {
@@ -53,7 +53,7 @@ contract TestMerkleProof is Merkleproof {
               hashes[offset + i + 1]
             )
           )
-        )
+        );
       }
       offset += n;
       n = n / 2;
