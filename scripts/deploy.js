@@ -1,18 +1,13 @@
 const colors = require('colors');
 const hre = require('hardhat');
-const prompts = require('prompts');
+const { promptForContractDeployment } = require('./helpers');
+
 require('dotenv').config();
 
 async function main() {
-  const response = await prompts(
-    {
-      type: 'text',
-      name: 'contractName',
-      message: 'Enter the contract name you want to deploy',
-    }
-  )
+  const [contractName, argumentsArray] = await promptForContractDeployment();
 
-  console.log(`Deploying ${response.contractName}`.cyan);
+  console.log(`Deploying ${contractName}`.cyan);
   const signers = await hre.ethers.getSigners();
   const deployer = signers[0];
   
@@ -22,11 +17,11 @@ async function main() {
     console.log(`Deploying to ${hre.network.name}`.cyan);
   }
   
-  const contractFactory = await hre.ethers.getContractFactory(response.contractName, deployer);
-  const contract = await contractFactory.deploy();
+  const contractFactory = await hre.ethers.getContractFactory(contractName, deployer);
+  const contract = await contractFactory.deploy(...argumentsArray);
   await contract.waitForDeployment();
   const contractAddress = await contract.getAddress();
-  console.log(`Deployed ${response.contractName} to ${contractAddress}`.green);
+  console.log(`Deployed ${contractName} to ${contractAddress}`.green);
 }
 
 main()
