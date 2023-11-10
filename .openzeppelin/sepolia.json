@@ -1,0 +1,72 @@
+{
+  "manifestVersion": "3.2",
+  "admin": {
+    "address": "0xD5336cFf832e2B849597c89aEc0fAd9f09D9A0a3",
+    "txHash": "0xa58db9d058fa1624416e6ab2e0a91cb43e8af97bba5c1f282add444498faa0d3"
+  },
+  "proxies": [
+    {
+      "address": "0x93dC30BEF4D8020DB2e71d29DB3EFBC0ed04EEaB",
+      "txHash": "0xf2961a515509f6cea602c229e40ffca0cb1ff050892ea355bb34dabedbbc2a6a",
+      "kind": "transparent"
+    }
+  ],
+  "impls": {
+    "221b83a1f5bbbabe4eb1af1e15f8208aa3a4b539fe6b73dfd9e1f305ad00645f": {
+      "address": "0x476D87C35a08d8E31d374d10dF150ec26c2632Af",
+      "txHash": "0x75b51b3242ab1fe12035cb07eff3ecdd4b1031d380fb32c49fade2b791702f7b",
+      "layout": {
+        "solcVersion": "0.8.20",
+        "storage": [
+          {
+            "label": "value",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint256",
+            "contract": "Box",
+            "src": "contracts/Box.sol:5"
+          }
+        ],
+        "types": {
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        },
+        "namespaces": {}
+      }
+    },
+    "c07ec43dbdb91b6c80872e790bc77f089a3efbc70d00680e7a51e9da6330be16": {
+      "address": "0x8B88c2e4005271A6A04b492608fe37A9804ee049",
+      "txHash": "0x9923b3a7c8c53912171bfe38291ab58b27aaee1ac961ed5e9ab996c99d012b8b",
+      "layout": {
+        "solcVersion": "0.8.20",
+        "storage": [
+          {
+            "label": "value",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint256",
+            "contract": "BoxV2",
+            "src": "contracts/BoxV2.sol:5"
+          },
+          {
+            "label": "result",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256",
+            "contract": "BoxV2",
+            "src": "contracts/BoxV2.sol:6"
+          }
+        ],
+        "types": {
+          "t_uint256": {
+            "label": "uint256",
+            "numberOfBytes": "32"
+          }
+        },
+        "namespaces": {}
+      }
+    }
+  }
+}

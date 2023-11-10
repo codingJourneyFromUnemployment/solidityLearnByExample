@@ -18,10 +18,15 @@ async function main() {
   }
   
   const contractFactory = await hre.ethers.getContractFactory(contractName, deployer);
-  const contract = await contractFactory.deploy(...argumentsArray);
+  const contract = await upgrades.deployProxy(contractFactory, [...argumentsArray]);
   await contract.waitForDeployment();
   const contractAddress = await contract.getAddress();
-  console.log(`Deployed ${contractName} to ${contractAddress}`.green);
+  
+  const proxyAdmin = await upgrades.admin.getInstance();
+  const proxyAdminAddress = await proxyAdmin.getAddress(); 
+
+  console.log(`Deployed ${contractName} to ${contractAddress}, this is a proxy contract address.`.green);
+  console.log(`Proxy admin is ${proxyAdminAddress}`.green);
 }
 
 main()

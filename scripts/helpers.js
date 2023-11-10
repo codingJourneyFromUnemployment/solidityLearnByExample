@@ -32,4 +32,4 @@ async function promptForContractDeployment() {
   return [response.contractName, argumentsArray];
 }
 
-module.exports = { promptForContractDeployment }
+module.exports = { promptForContractDeployment } 
