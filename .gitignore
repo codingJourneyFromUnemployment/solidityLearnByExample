@@ -138,3 +138,6 @@ artifacts
 gas-report.txt
 coverage.json
 coverage
+
+.vscode/
+.openzeppelin/
